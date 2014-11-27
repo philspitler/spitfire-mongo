@@ -1,0 +1,23 @@
+{
+  "name": "spitfire",
+  "version": "1.0.0",
+  "description": "Dynamic RESTful API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spitfireio/spitfire.git"
+  },
+  "author": "Phil Spitler <phil@spitfire.io>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spitfireio/spitfire/issues"
+  },
+  "homepage": "http://spitfireio/github.io",
+  "dependencies": {
+    "inflection": "^1.5.2",
+    "mongojs": "^0.17.0"
+  }
+}
