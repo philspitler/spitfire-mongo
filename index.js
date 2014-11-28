@@ -71,7 +71,7 @@ Spitfire.prototype.deleteResource = function (resourceName, id, callback) {
     collection.remove({
       _id:mongojs.ObjectId(id)
     }, function () {
-      doc.remove = true;
+      doc.removed = true;
       callback(doc);
     });
   });
