@@ -1,6 +1,6 @@
 #Spitfire
 
-##API to manage “resources” in mongodb.
+##API to manage “resources” in MongoDB.
 
 ###Requirements:
 
