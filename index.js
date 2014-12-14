@@ -2,9 +2,11 @@
 
 var mongojs = require('mongojs');
 var inflection = require('inflection');
+var util = require('util');
 
-function Spitfire(database) {
+function Spitfire(database, generateCollections) {
   this.db = mongojs(database);
+  this.generateCollections = generateCollections === undefined ? false : generateCollections;
 }
 
 //Get a List of Resources
@@ -36,9 +38,17 @@ Spitfire.prototype.getResource = function (resourceName, id, callback) {
 };
 
 Spitfire.prototype.createResource = function (resourceName, body, callback) {
-  var collection = this.db.collection(resourceName);
-  collection.insert(body, function (err, doc) {
-    callback(doc);
+  var self = this;
+  this.db.getCollectionNames(function (err, collections) {
+    var collection;
+    if (self.generateCollections === true || collections.indexOf(resourceName) !== -1) {
+      collection = self.db.collection(resourceName);
+      collection.insert(body, function (err, doc) {
+        callback(doc);
+      });
+    } else {
+      callback({error: 'Not authorized to generate collections.'});
+    }
   });
 };
 
