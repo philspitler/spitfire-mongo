@@ -2,11 +2,11 @@
 
 var mongojs = require('mongojs');
 var inflection = require('inflection');
-var util = require('util');
 
 function Spitfire(database, generateCollections) {
   this.db = mongojs(database);
   this.generateCollections = generateCollections === undefined ? false : generateCollections;
+  this.error = {error: 'Not authorized to generate collections.'};
 }
 
 //Get a List of Resources
@@ -47,17 +47,14 @@ Spitfire.prototype.createResource = function (resourceName, body, callback) {
         callback(doc);
       });
     } else {
-      callback({error: 'Not authorized to generate collections.'});
+      callback(self.error);
     }
   });
 };
 
 Spitfire.prototype.createNestedResource = function (resourceName1, id, resourceName2, body, callback) {
-  var collection = this.db.collection(resourceName2);
   body[inflection.singularize(resourceName1)+'_id'] = id;
-  collection.insert(body, function (err, doc) {
-    callback(doc);
-  });
+  this.createResource(resourceName2, body, callback);
 };
 
 Spitfire.prototype.updateResource = function (resourceName, id, body, callback) {
