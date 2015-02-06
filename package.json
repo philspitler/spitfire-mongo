@@ -18,11 +18,10 @@
   "homepage": "http://spitfireio/github.io",
   "dependencies": {
     "inflection": "^1.5.2",
-    "lodash": "^3.1.0",
     "mongojs": "^0.17.0"
   },
   "devDependencies": {
-    "chai-factories": "^0.1.0",
-    "mongodb": "^1.4.30"
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0"
   }
 }
