@@ -1,5 +1,5 @@
 {
-  "name": "spitfire",
+  "name": "spitfire-node",
   "version": "1.0.0",
   "description": "Dynamic Resource Management for configureless Backend as a Service.",
   "main": "./lib/spitfire.js",
