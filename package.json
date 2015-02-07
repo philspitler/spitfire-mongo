@@ -1,7 +1,7 @@
 {
   "name": "spitfire",
   "version": "1.0.0",
-  "description": "Resource Storage Mechanism",
+  "description": "Dynamic Resource Management for configureless Backend as a Service.",
   "main": "./lib/spitfire.js",
   "scripts": {
     "test": "mocha spec"
