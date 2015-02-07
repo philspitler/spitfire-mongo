@@ -2,34 +2,75 @@
 
 var expect = require('chai').expect;
 var Spitfire = require('../lib/spitfire');
+var mongojs = require('mongojs');
 
 describe('Connection', function () {
   var database = 'spitfire-spec';
   var resource = 'forums';
   var spitfire = new Spitfire(database, true);
+  var db = mongojs(database);
+  var forum;
+  var topic;
+  var post;
 
   before(function (done) {
-    done();
+    var forums = db.collection('forums');
+    var topics = db.collection('topics');
+    var posts = db.collection('posts');
+    forums.insert({name: 'forum 1'},function (err, forum_doc) {
+      forum = forum_doc;
+      topics.insert({name: 'topic 1', forum_id: forum_doc._id}, function (err, topic_doc){
+        topic = topic_doc;
+        posts.insert({name: 'post 1', topic_id: topic_doc._id}, function (err, post_doc){
+          post = post_doc;
+          done();
+        });
+      });
+    });
   });
 
   after(function (done) {
+    db.dropDatabase();
+    db.close();
     done();
   });
 
   describe('Spitfire', function(){
     describe('#getResources()', function(){
-      it('', function(done){
+      it('returns an array', function(done){
         spitfire.getResources(resource, function (docs) {
+          expect(docs).to.be.instanceof(Array);
+          done();
+        });
+      });
+      it('matches up with the test data', function(done){
+        spitfire.getResources(resource, function (docs) {
+          expect(docs[0]._id.toString()).to.equal(forum._id.toString());
           done();
         });
       });
     });
     describe('#getNestedResources()', function(){
-      it('', function(){
+      it('returns an array', function(done){
+        spitfire.getNestedResources(resource, forum._id, 'topics', function (docs) {
+          expect(docs).to.be.instanceof(Array);
+          done();
+        });
+      });
+      it('matches up with the test data', function(done){
+        spitfire.getNestedResources(resource, forum._id, 'topics', function (docs) {
+          expect(docs[0]._id.toString()).to.equal(topic._id.toString());
+          expect(docs[0].forum_id.toString()).to.equal(forum._id.toString());
+          done();
+        });
       });
     });
     describe('#getResource()', function(){
-      it('', function(){
+      it('gets a resource', function(done){
+        spitfire.getResource(resource, forum._id, function (doc) {
+          expect(doc._id.toString()).to.equal(forum._id.toString());
+          done();
+        });
       });
     });
     describe('#createResource()', function(){
@@ -42,15 +83,30 @@ describe('Connection', function () {
       });
     });
     describe('#createNestedResource()', function(){
-      it ('', function () {
+      it ('creates a nested resource', function (done) {
+        spitfire.createNestedResource(resource, forum._id, 'topics', {name: 'topic 2'}, function (doc) {
+          expect(doc.hasOwnProperty('_id')).to.be.true();
+          expect(doc.name).to.equal('topic 2');
+          expect(doc.forum_id.toString()).to.equal(forum._id.toString());
+          done();
+        });
       });
     });
     describe('#updateResource()', function(){
-      it ('', function () {
+      it ('updates a resource', function (done) {
+        spitfire.updateResource(resource, forum._id, {name: 'forum 1 updated'}, function (doc) {
+          expect(doc._id.toString()).to.equal(forum._id.toString());
+          expect(doc.name).to.equal('forum 1 updated');
+          done();
+        });
       });
     });
     describe('#deleteResource()', function(){
-      it ('', function () {
+      it ('deletes a resource', function (done) {
+        spitfire.deleteResource(resource, forum._id, function (doc) {
+          expect(doc.removed).to.be.true();
+          done();
+        });
       });
     });
   });
