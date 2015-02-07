@@ -1,7 +1,7 @@
 {
   "name": "spitfire",
   "version": "1.0.0",
-  "description": "Dynamic RESTful API",
+  "description": "Resource Storage Mechanism",
   "main": "./lib/spitfire.js",
   "scripts": {
     "test": "mocha spec"
