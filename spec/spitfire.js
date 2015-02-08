@@ -52,8 +52,9 @@ describe('Connection', function () {
     });
     describe('#getNestedResources()', function(){
       it('returns an array', function(done){
-        spitfire.getNestedResources(resource, forum._id, 'topics', function (docs) {
+        spitfire.getNestedResources(resource, forum._id.toString(), 'topics', function (docs) {
           expect(docs).to.be.instanceof(Array);
+          expect(docs.length).to.be.at.least(1);
           done();
         });
       });
@@ -84,7 +85,7 @@ describe('Connection', function () {
     });
     describe('#createNestedResource()', function(){
       it ('creates a nested resource', function (done) {
-        spitfire.createNestedResource(resource, forum._id, 'topics', {name: 'topic 2'}, function (doc) {
+        spitfire.createNestedResource(resource, forum._id.toString(), 'topics', {name: 'topic 2'}, function (doc) {
           expect(doc.hasOwnProperty('_id')).to.be.true();
           expect(doc.name).to.equal('topic 2');
           expect(doc.forum_id.toString()).to.equal(forum._id.toString());
