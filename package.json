@@ -18,7 +18,7 @@
   "homepage": "http://spitfireio/github.io",
   "dependencies": {
     "inflection": "^1.5.2",
-    "mongojs": "^0.17.0"
+    "mongojs": "^1.4.0"
   },
   "devDependencies": {
     "chai": "^1.10.0",
