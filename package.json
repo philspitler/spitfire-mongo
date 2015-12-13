@@ -1,6 +1,6 @@
 {
   "name": "spitfire-node",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Dynamic Resource Management for configureless Backend as a Service.",
   "main": "./lib/spitfire.js",
   "scripts": {
