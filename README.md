@@ -21,4 +21,4 @@ While single level nesting of resources is limiting, with multiple calls, one sh
 
 ### Example:
 
-https://github.com/spitfireio/spitfire-express - Implemented as an Express.js middleware to dynamically generate RESTful endpoints.
+https://github.com/philspitler/spitfire-express - Implemented as an Express.js middleware to dynamically generate RESTful endpoints.
