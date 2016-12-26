@@ -1,6 +1,6 @@
 {
   "name": "spitfire-mongo",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Dynamic Resource Management for configureless Backend as a Service.",
   "main": "./lib/spitfire.js",
   "scripts": {
