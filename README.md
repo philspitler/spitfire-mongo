@@ -1,8 +1,8 @@
-# Spitfire
+# Spitfire Mongo Adapter
 
 [![npm version](https://badge.fury.io/js/spitfire-node.svg)](https://badge.fury.io/js/spitfire-node)
 
-## API to manage “resources” in MongoDB.
+## MongoDB resource storage adapter
 
 ### Requirements:
 
