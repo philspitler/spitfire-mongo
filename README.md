@@ -1,6 +1,6 @@
 # Spitfire Mongo Adapter
 
-[![npm version](https://badge.fury.io/js/spitfire-node.svg)](https://badge.fury.io/js/spitfire-node)
+[![npm version](https://badge.fury.io/js/spitfire-mongo.svg)](https://badge.fury.io/js/spitfire-mongo)
 
 ## MongoDB resource storage adapter
 
