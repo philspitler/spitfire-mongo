@@ -1,5 +1,5 @@
 {
-  "name": "spitfire-node",
+  "name": "spitfire-mongo",
   "version": "1.0.7",
   "description": "Dynamic Resource Management for configureless Backend as a Service.",
   "main": "./lib/spitfire.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/spitfireio/spitfire.git"
+    "url": "https://github.com/philspitler/spitfire-mongo.git"
   },
-  "author": "Phil Spitler <phil@spitfire.io>",
+  "author": "Phil Spitler <phil@sproutkey.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/spitfireio/spitfire/issues"
+    "url": "https://github.com/philspitler/spitfire-mongo/issues"
   },
-  "homepage": "http://spitfireio/github.io",
+  "homepage": "https://github.com/philspitler/spitfire-mongo",
   "dependencies": {
     "inflection": "^1.5.2",
     "mongojs": "^2.4.0"
